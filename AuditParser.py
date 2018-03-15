@@ -33,13 +33,13 @@ from lxml import etree
 # Dictionary of XML elements to parse from each audit type
 d = {}
 
-d['FileItem'] = ['FileName', 'FullPath', 'FileAttributes', 'SizeInBytes', 'Md5sum', 'Username', 'Created', 'Modified', 'Accessed', 'Changed', 'FilenameCreated', 'FilenameModified', 'FilenameAccessed', 'FilenameChanged', 'SecurityID', 'INode', 'DevicePath', 'PEInfo','StreamList']
+d['FileItem'] = ['FileName', 'FullPath', 'FileAttributes', 'SizeInBytes', 'Md5sum', 'Username', 'Created', 'Modified', 'Accessed', 'Changed', 'FilenameCreated', 'FilenameModified', 'FilenameAccessed', 'FilenameChanged', 'SecurityID', 'INode', 'DevicePath', 'PEInfo','StreamList','Group','GroupID','Permissions']
 d['PrefetchItem'] = ['FullPath', 'Created', 'SizeInBytes', 'ApplicationFileName', 'LastRun', 'TimesExecuted', 'ApplicationFullPath']
 d['UserItem'] = ['Username', 'SecurityID', 'SecurityType', 'fullname', 'description', 'homedirectory', 'scriptpath', 'grouplist', 'LastLogin', 'disabled', 'lockedout', 'passwordrequired', 'userpasswordage']
 d['RegistryItem'] = ['Username','SecurityID','Path','ValueName','Type','Modified','Text','NumSubKeys','NumValues']
 d['PortItem'] = ['pid', 'process', 'path', 'state', 'localIP', 'remoteIP', 'localPort', 'remotePort', 'protocol']
 d['UrlHistoryItem'] = ['Profile', 'BrowserName', 'BrowserVersion', 'Username', 'URL', 'LastVisitDate', 'VisitType']
-d['ProcessItem'] = ['pid', 'parentpid', 'path', 'name', 'arguments', 'Username', 'SecurityID', 'SecurityType', 'startTime']
+d['ProcessItem'] = ['pid', 'parentpid', 'path', 'name', 'arguments', 'Username', 'SecurityID', 'SecurityType', 'startTime', 'kernelTime', 'userTime']
 d['EventLogItem'] = ['EID', 'log', 'index', 'type', 'genTime', 'writeTime', 'source', 'machine', 'user', 'message']
 d['ServiceItem'] = ['name', 'descriptiveName', 'description', 'mode', 'startedAs', 'path', 'arguments', 'pathmd5sum', 'pathSignatureExists', 'pathSignatureVerified', 'pathSignatureDescription', 'pathCertificateSubject', 'pathCertificateIssuer', 'serviceDLL', 'serviceDLLmd5sum', 'serviceDLLSignatureExists', 'serviceDLLSignatureVerified', 'serviceDLLSignatureDescription', 'serviceDLLCertificateSubject', 'serviceDLLCertificateIssuer', 'status', 'pid', 'type']
 d['ModuleItem'] = ['ModuleAddress', 'ModuleInit', 'ModuleBase', 'ModuleSize', 'ModulePath', 'ModuleName']
@@ -53,8 +53,9 @@ d['DnsEntryItem'] = ['Host', 'RecordName', 'RecordType', 'TimeToLive', 'Flags', 
 d['TaskItem'] = ['Name', 'VirtualPath', 'ExitCode', 'CreationDate', 'Comment', 'Creator', 'MaxRunTime', 'Flag', 'AccountName', 'AccountRunLevel', 'AccountLogonType', 'MostRecentRunTime','NextRunTime', 'Status', 'ActionList']
 d['FileDownloadHistoryItem'] = ['Profile', 'BrowserName', 'BrowserVersion', 'username', 'DownloadType', 'FileName', 'SourceURL', 'TargetDirectory', 'LastAccessedDate', 'LastModifiedDate', 'BytesDownloaded', 'MaxBytes', 'CacheFlags', 'CacheHitCount', 'LastCheckedDate']
 d['CookieHistoryItem'] = ['Profile', 'BrowserName', 'BrowserVersion', 'Username', 'FileName', 'FilePath', 'CookiePath', 'CookieName', 'CookieValue', 'CreationDate', 'ExpirationDate' 'LastAccessedDate', 'LastModifiedDate']
-d['SystemInfoItem'] = ['machine', 'totalphysical', 'availphysical', 'uptime', 'OS', 'OSbitness', 'hostname', 'date', 'user', 'domain', 'processor', 'patchLevel', 'buildNumber', 'procType', 'productID', 'productName', 'regOrg', 'regOwner', 'installDate' , 'MAC', 'timezoneDST', 'timezoneStandard', 'networkArray']
+d['SystemInfoItem'] = ['machine', 'totalphysical', 'availphysical', 'uptime', 'platform', 'OS', 'OSbitness', 'hostname', 'date', 'user', 'domain', 'loggedOnUser', 'processor', 'patchLevel', 'buildNumber', 'procType', 'productID', 'productName', 'regOrg', 'regOwner', 'installDate' , 'MAC', 'timezoneDST', 'timezoneStandard', 'timezone', 'gmtoffset', 'clockSkew', 'date', 'networkArray', 'primaryIpv4Address', 'primaryIpAddress', 'containmentState', 'procConfigInfo', 'kernelVersion', 'stateAgentStatus', 'appVersion', 'appCreated']
 d['PersistenceItem'] = ['PersistenceType', 'ServiceName', 'RegPath', 'RegText', 'RegOwner', 'RegModified', 'ServicePath', 'serviceDLL', 'arguments', 'FilePath', 'FileOwner', 'FileCreated', 'FileModified', 'FileAccessed', 'FileChanged', 'SignatureExists', 'SignatureVerified', 'SignatureDescription', 'CertificateSubject', 'CertificateIssuer', 'md5sum']
+d['ShellHistoryItem'] = ['FileOrder','UserName','Shell','Command']
 # TODO: Add parsing for Disk and System Restore Point audits
 
 
